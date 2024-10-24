@@ -9,9 +9,10 @@ interface SnippetEditPageProps {
 }
 
 const SnippetEditPage = async ({ params }: SnippetEditPageProps) => {
-  const id = +params.id
+  const { id } = await params
+
   const snippet = await db.snippet.findFirst({
-    where: { id },
+    where: { id: +id },
   })
 
   if (!snippet) {
